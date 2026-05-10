@@ -1,25 +1,17 @@
-import { getPosts } from "@/utils/utils";
-import { baseURL, routes as routesConfig } from "@/resources";
+export const runtime = 'edge';
+import { ImageResponse } from 'next/og';
+import { baseURL, person } from "@/resources";
 
-export default async function sitemap() {
-  const blogs = getPosts(["src", "app", "blog", "posts"]).map((post) => ({
-    url: `${baseURL}/blog/${post.slug}`,
-    lastModified: post.metadata.publishedAt,
-  }));
+export async function GET(request: Request) {
+    let url = new URL(request.url);
+    const title = url.searchParams.get('title') || person.name;
 
-  const works = getPosts(["src", "app", "work", "projects"]).map((post) => ({
-    url: `${baseURL}/work/${post.slug}`,
-    lastModified: post.metadata.publishedAt,
-  }));
-
-  const activeRoutes = Object.keys(routesConfig).filter(
-    (route) => routesConfig[route as keyof typeof routesConfig],
-  );
-
-  const routes = activeRoutes.map((route) => ({
-    url: `${baseURL}${route !== "/" ? route : ""}`,
-    lastModified: new Date().toISOString().split("T")[0],
-  }));
-
-  return [...routes, ...blogs, ...works];
+    return new ImageResponse(
+        (
+            <div style={{ display: 'flex', background: 'black', width: '100%', height: '100%', color: 'white', alignItems: 'center', justifyContent: 'center' }}>
+                <h1>{title}</h1>
+            </div>
+        ),
+        { width: 1200, height: 630 }
+    );
 }
