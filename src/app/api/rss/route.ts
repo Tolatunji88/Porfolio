@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 import { getPosts } from "@/utils/utils";
 import { baseURL, blog, person } from "@/resources";
 import { NextResponse } from "next/server";
