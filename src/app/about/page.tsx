@@ -11,9 +11,11 @@ import {
   Meta,
   Schema,
   Row,
+  SmartLink,
 } from "@once-ui-system/core";
 import { baseURL, about, person, social } from "@/resources";
 import TableOfContents from "@/components/about/TableOfContents";
+import { PdfPreviewModal } from "@/components/about/PdfPreviewModal";
 import styles from "@/components/about/about.module.scss";
 import React from "react";
 
@@ -33,6 +35,11 @@ export default function About() {
       title: about.intro.title,
       display: about.intro.display,
       items: [],
+    },
+    {
+      title: about.projects.title,
+      display: about.projects.display,
+      items: about.projects.items.map((item) => item.name),
     },
     {
       title: about.work.title,
@@ -202,6 +209,38 @@ export default function About() {
             </Column>
           )}
 
+          {about.projects.display && about.projects.items.length > 0 && (
+            <>
+              <Heading
+                as="h2"
+                id={about.projects.title}
+                variant="display-strong-s"
+                marginBottom="m"
+              >
+                {about.projects.title}
+              </Heading>
+              <Column fillWidth gap="xl" marginBottom="40">
+                {about.projects.items.map((project, index) => (
+                  <Column key={`${project.name}-${index}`} fillWidth gap="8">
+                    <Row fillWidth horizontal="between" vertical="end" wrap gap="8">
+                      <Text id={project.name} variant="heading-strong-l">
+                        <SmartLink href={project.href}>{project.name}</SmartLink>
+                      </Text>
+                      {project.timeframe && (
+                        <Text variant="heading-default-xs" onBackground="neutral-weak">
+                          {project.timeframe}
+                        </Text>
+                      )}
+                    </Row>
+                    <Text variant="body-default-m" onBackground="neutral-weak">
+                      {project.description}
+                    </Text>
+                  </Column>
+                ))}
+              </Column>
+            </>
+          )}
+
           {about.work.display && (
             <>
               <Heading as="h2" id={about.work.title} variant="display-strong-s" marginBottom="m">
@@ -255,6 +294,16 @@ export default function About() {
                         ))}
                       </Row>
                     )}
+                    {experience.documentEmbed && (
+                      <Row fillWidth paddingTop="m" paddingLeft="40">
+                        <PdfPreviewModal
+                          title={experience.documentEmbed.title}
+                          src={experience.documentEmbed.src}
+                          buttonLabel={experience.documentEmbed.buttonLabel}
+                          iframeHeight={experience.documentEmbed.height}
+                        />
+                      </Row>
+                    )}
                   </Column>
                 ))}
               </Column>
@@ -268,13 +317,13 @@ export default function About() {
               </Heading>
               <Column fillWidth gap="l" marginBottom="40">
                 {about.studies.institutions.map((institution, index) => (
-                  <Column key={`${institution.name}-${index}`} fillWidth gap="4">
+                  <Column key={`${institution.name}-${index}`} fillWidth gap="12">
                     <Text id={institution.name} variant="heading-strong-l">
                       {institution.name}
                     </Text>
-                    <Text variant="heading-default-xs" onBackground="neutral-weak">
+                    <Column fillWidth gap="8">
                       {institution.description}
-                    </Text>
+                    </Column>
                   </Column>
                 ))}
               </Column>

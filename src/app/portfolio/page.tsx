@@ -1,6 +1,5 @@
 import { Column, Heading, Meta, Schema } from "@once-ui-system/core";
 import { baseURL, about, person, work } from "@/resources";
-import { Projects } from "@/components/work/Projects";
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -12,9 +11,16 @@ export async function generateMetadata() {
   });
 }
 
-export default function Work() {
+export default function PortfolioPage() {
   return (
-    <Column maxWidth="m" paddingTop="24">
+    <Column
+      maxWidth="m"
+      paddingTop="24"
+      fillWidth
+      horizontal="center"
+      vertical="center"
+      style={{ minHeight: "min(60vh, 520px)" }}
+    >
       <Schema
         as="webPage"
         baseURL={baseURL}
@@ -28,10 +34,9 @@ export default function Work() {
           image: `${baseURL}${person.avatar}`,
         }}
       />
-      <Heading marginBottom="l" variant="heading-strong-xl" align="center">
-        {work.title}
+      <Heading variant="display-strong-xl" align="center">
+        Coming soon
       </Heading>
-      <Projects />
     </Column>
   );
 }

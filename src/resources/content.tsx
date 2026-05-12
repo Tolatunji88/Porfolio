@@ -1,21 +1,22 @@
-import { About, Blog, Gallery, Home, Newsletter, Person, Social, Work } from "@/types";
-import { Line, Row, Text } from "@once-ui-system/core";
+import { About, Home, Person, Social, Work } from "@/types";
+import { Button, Column, Row, Text } from "@once-ui-system/core";
 
-const person: Person = {
-  firstName: "Selene",
-  lastName: "Yu",
-  name: `Selene Yu`,
-  role: "Design Engineer",
-  avatar: "/images/avatar.jpg",
-  email: "example@gmail.com",
-  location: "Asia/Jakarta", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-  languages: ["English", "Bahasa"], // optional: Leave the array empty if you don't want to display languages
+const resumeOutlineButtonStyle = {
+  borderWidth: 2,
+  borderStyle: "solid" as const,
+  borderColor: "#3b82f6",
+  boxShadow: "0 0 0 1px rgba(59, 130, 246, 0.25)",
 };
 
-const newsletter: Newsletter = {
-  display: true,
-  title: <>Subscribe to {person.firstName}'s Newsletter</>,
-  description: <>My weekly newsletter about creativity and engineering</>,
+const person: Person = {
+  firstName: "Tolu",
+  lastName: "Olatunji",
+  name: `Tolu Olatunji`,
+  role: "Computer Engineering Student",
+  avatar: "/images/avatar.png",
+  email: "tolu.r.olatunji@gmail.com",
+  location: "America/Toronto",
+  languages: ["English", "Spanish (conversational)"],
 };
 
 const social: Social = [
@@ -25,25 +26,13 @@ const social: Social = [
   {
     name: "GitHub",
     icon: "github",
-    link: "https://github.com/once-ui-system",
+    link: "https://github.com/Tolatunji88",
     essential: true,
   },
   {
     name: "LinkedIn",
     icon: "linkedin",
-    link: "https://www.linkedin.com/company/once-ui/",
-    essential: true,
-  },
-  {
-    name: "Instagram",
-    icon: "instagram",
-    link: "https://www.instagram.com/once_ui/",
-    essential: false,
-  },
-  {
-    name: "Threads",
-    icon: "threads",
-    link: "https://www.threads.com/@once_ui",
+    link: "https://www.linkedin.com/in/tolu-olatunji-1a53b4359",
     essential: true,
   },
   {
@@ -59,25 +48,25 @@ const home: Home = {
   image: "/images/og/home.jpg",
   label: "Home",
   title: `${person.name}'s Portfolio`,
-  description: `Portfolio website showcasing my work as a ${person.role}`,
-  headline: <>Building bridges between design and code</>,
+  description: `${person.name} — computer engineering at U of T; interests in AI, ML, hardware, finance, and data`,
+  headline: <>{person.name}</>,
   featured: {
-    display: true,
-    title: (
-      <Row gap="12" vertical="center">
-        <strong className="ml-4">Once UI</strong>{" "}
-        <Line background="brand-alpha-strong" vert height="20" />
-        <Text marginRight="4" onBackground="brand-medium">
-          Featured work
-        </Text>
-      </Row>
-    ),
-    href: "/work/building-once-ui-a-customizable-design-system",
+    display: false,
+    title: <></>,
+    href: "/portfolio",
   },
   subline: (
     <>
-    I'm Selene, a design engineer at <Text as="span" size="xl" weight="strong">ONCE UI</Text>, where I craft intuitive <br /> user experiences. After hours, I build my own projects.
-</>
+      I&apos;m a computer engineering student at the{" "}
+      <Text as="span" size="xl" weight="strong">
+        University of Toronto
+      </Text>
+      . I&apos;m especially interested in{" "}
+      <Text as="span" weight="strong">
+        AI and machine learning
+      </Text>
+      , hardware, finance, data analytics, and the places those fields meet.
+    </>
   ),
 };
 
@@ -85,7 +74,7 @@ const about: About = {
   path: "/about",
   label: "About",
   title: `About – ${person.name}`,
-  description: `Meet ${person.name}, ${person.role} from ${person.location}`,
+  description: `Meet ${person.name}, ${person.role} based in Toronto`,
   tableOfContent: {
     display: true,
     subItems: false,
@@ -94,60 +83,116 @@ const about: About = {
     display: true,
   },
   calendar: {
-    display: true,
+    display: false,
     link: "https://cal.com",
   },
   intro: {
     display: true,
     title: "Introduction",
     description: (
-      <>
-        Selene is a Jakarta-based design engineer with a passion for transforming complex challenges
-        into simple, elegant design solutions. Her work spans digital interfaces, interactive
-        experiences, and the convergence of design and technology.
-      </>
+      <Column gap="m">
+        <Text variant="body-default-l">
+          I&apos;m a computer engineering student at the University of Toronto, especially interested in
+          AI and machine learning, hardware, finance, data analytics, and where those areas connect.
+        </Text>
+        <Row wrap gap="8">
+          <Button
+            href="/documents/Tolu_Olatunji_Engineering_Resume.pdf"
+            label="Engineering resume"
+            prefixIcon="document"
+            size="s"
+            variant="secondary"
+            style={resumeOutlineButtonStyle}
+          />
+          <Button
+            href="/documents/tolu-olatunji-general-resume.pdf"
+            label="General resume"
+            prefixIcon="document"
+            size="s"
+            variant="secondary"
+            style={resumeOutlineButtonStyle}
+          />
+        </Row>
+      </Column>
     ),
   },
+  projects: {
+    display: true,
+    title: "Projects",
+    items: [
+      {
+        name: "Questr (SideQuestly)",
+        timeframe: "Oct 2025 – Nov 2025",
+        href: "https://github.com/Tolatunji88/SideQuestly",
+        description: (
+          <>
+            NewHacks project (fork of Questr): full-stack wellbeing app with Flask, SQLite, and the Google Gemini API for
+            personalized daily quests; sentiment analysis with TextBlob and Chart.js; deployed on Render with Gunicorn.
+          </>
+        ),
+      },
+      {
+        name: "EV battery cooling — tensor mapping",
+        href: "https://github.com/Tolatunji88/Tensor-Image-Mapping-Project-",
+        description: (
+          <>
+            Jupyter pipeline that turns EV battery cooling simulation screenshots (temperature, pressure, velocity, layout)
+            into aligned multi-channel tensors—legend OCR with Tesseract, domain masking, image-to-layout registration, and
+            interactive overlays—with NumPy/PyTorch exports for downstream ML.
+          </>
+        ),
+      },
+    ],
+  },
   work: {
-    display: true, // set to false to hide this section
+    display: true,
     title: "Work Experience",
     experiences: [
       {
-        company: "FLY",
-        timeframe: "2022 - Present",
-        role: "Senior Design Engineer",
+        company: "University of Toronto",
+        timeframe: "May 2025 – Present",
+        role: "Undergraduate Research Assistant — Generative AI for Thermal Systems",
         achievements: [
           <>
-            Redesigned the UI/UX for the FLY platform, resulting in a 20% increase in user
-            engagement and 30% faster load times.
+            Built a Python data pipeline using OpenCV, Tesseract OCR, and SciPy to extract values
+            from 45+ CFD simulation images, producing structured multi-modal PyTorch tensors for
+            model training.
           </>,
           <>
-            Spearheaded the integration of AI tools into design workflows, enabling designers to
-            iterate 50% faster.
+            Developing a supervised PyTorch model to predict temperature fields from velocity inputs
+            as a low-fidelity surrogate toward physics-informed neural networks (PINNs) for faster
+            design optimization.
+          </>,
+          <>
+            Applied data augmentation on limited paired CFD datasets to train diffusion and GAN
+            models for automated battery cooling layouts under geometric and manufacturing
+            constraints.
           </>,
         ],
-        images: [
-          // optional: leave the array empty if you don't want to display images
-          {
-            src: "/images/projects/project-01/cover-01.jpg",
-            alt: "Once UI Project",
-            width: 16,
-            height: 9,
-          },
-        ],
+        images: [],
       },
       {
-        company: "Creativ3",
-        timeframe: "2018 - 2022",
-        role: "Lead Designer",
+        company: "Cornell University, BTI Institute",
+        timeframe: "May 2024 – January 2025",
+        role: "Research Intern",
+        documentEmbed: {
+          title: "Hutchins Science poster",
+          buttonLabel: "View poster",
+          src: "/documents/tolu-hutchins-science-poster.pdf",
+          height: 720,
+        },
         achievements: [
           <>
-            Developed a design system that unified the brand across multiple platforms, improving
-            design consistency by 40%.
+            Assessed phenotypic expression across 35,000 CNR tomato-line samples in a gene-mutation
+            study, contributing data that informed triggers for fruit maturation.
           </>,
           <>
-            Led a cross-functional team to launch a new product line, contributing to a 15% increase
-            in overall company revenue.
+            Processed large biological datasets in Python and Excel to extract, filter, and summarize
+            features for downstream modeling pipelines.
+          </>,
+          <>
+            Produced technical reports synthesizing experimental results for collaborative research
+            and publications.
           </>,
         ],
         images: [],
@@ -155,150 +200,179 @@ const about: About = {
     ],
   },
   studies: {
-    display: true, // set to false to hide this section
-    title: "Studies",
+    display: true,
+    title: "Education",
     institutions: [
       {
-        name: "University of Jakarta",
-        description: <>Studied software engineering.</>,
+        name: "University of Toronto",
+        description: (
+          <Column gap="12" fillWidth>
+            <Text variant="body-default-m">
+              <Text as="span" weight="strong">
+                Bachelor of Applied Science in Computer Engineering
+              </Text>
+              {" "}
+              — PEY Co-op. Expected graduation{" "}
+              <Text as="span" weight="strong">
+                April 2030
+              </Text>
+              .
+            </Text>
+            <Column gap="4" fillWidth>
+              <Text variant="label-strong-s" onBackground="neutral-strong">
+                Coursework
+              </Text>
+              <Text variant="body-default-s" onBackground="neutral-weak">
+                Computer and electrical fundamentals, calculus, dynamics, linear algebra, and introduction to electrical
+                and computer engineering.
+              </Text>
+            </Column>
+          </Column>
+        ),
       },
       {
-        name: "Build the Future",
-        description: <>Studied online marketing and personal branding.</>,
+        name: "The Lawrenceville School",
+        description: (
+          <Column gap="16" fillWidth>
+            <Text variant="body-default-s" onBackground="neutral-weak">
+              Lawrence Township, NJ — August 2022 to May 2025
+            </Text>
+
+            <Column gap="8" fillWidth>
+              <Text variant="label-strong-s" onBackground="neutral-strong">
+                Academics
+              </Text>
+              <Text variant="body-default-m">
+                <Text as="span" weight="strong">
+                  3.85 GPA
+                </Text>{" "}
+                in rigorous college-prep courses;{" "}
+                <Text as="span" weight="strong">
+                  High Honors
+                </Text>
+                ;{" "}
+                <Text as="span" weight="strong">
+                  SAT 1500
+                </Text>
+                ;{" "}
+                <Text as="span" weight="strong">
+                  AP Scholar with Distinction
+                </Text>{" "}
+                (Calculus, Chemistry, Economics, Statistics).
+              </Text>
+            </Column>
+
+            <Column gap="8" fillWidth>
+              <Text variant="label-strong-s" onBackground="neutral-strong">
+                Leadership &amp; campus roles
+              </Text>
+              <Text variant="body-default-m" onBackground="neutral-weak">
+                Led the{" "}
+                <Text as="span" weight="strong">
+                  Peer Tutoring Program
+                </Text>{" "}
+                (recruitment and training for ~80 tutors serving 200+ students weekly); Religious Life Council;{" "}
+                <Text as="span" weight="strong">
+                  Varsity Track captain
+                </Text>
+                ; residential prefect; house treasurer (~$2,000 in house funds); concessions and cash handling.
+              </Text>
+            </Column>
+
+            <Column gap="8" fillWidth>
+              <Text variant="label-strong-s" onBackground="neutral-strong">
+                Community
+              </Text>
+              <Text variant="body-default-m" onBackground="neutral-weak">
+                Tutored grades 2–9 through{" "}
+                <Text as="span" weight="strong">
+                  Trenton Children&apos;s Chorus
+                </Text>{" "}
+                in math, science, history, and English for two years.
+              </Text>
+            </Column>
+
+            <Column gap="8" fillWidth>
+              <Text variant="label-strong-s" onBackground="neutral-strong">
+                Honors &amp; awards
+              </Text>
+              <Text variant="body-default-m" onBackground="neutral-weak">
+                Princeton University{" "}
+                <Text as="span" weight="strong">
+                  Hubert Alyea Chemistry Prize
+                </Text>
+                ; Harvard Club of Boston Book Award; national winner, Crack the Code (Codingville).
+              </Text>
+            </Column>
+          </Column>
+        ),
       },
     ],
   },
   technical: {
-    display: true, // set to false to hide this section
+    display: true,
     title: "Technical skills",
     skills: [
       {
-        title: "Figma",
+        title: "Languages & tools",
         description: (
-          <>Able to prototype in Figma with Once UI with unnatural speed.</>
+          <>
+            Day-to-day programming and embedded workflow across Python, Java, JavaScript, C, and
+            SQL; circuit design with Altium; firmware targets including STM32.
+          </>
         ),
         tags: [
-          {
-            name: "Figma",
-            icon: "figma",
-          },
+          { name: "Python" },
+          { name: "Java" },
+          { name: "JavaScript" },
+          { name: "C" },
+          { name: "SQL" },
+          { name: "HTML5" },
+          { name: "CSS" },
+          { name: "Git", icon: "github" },
+          { name: "VS Code" },
+          { name: "Jupyter" },
+          { name: "STM32" },
+          { name: "Altium" },
         ],
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-02.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-          {
-            src: "/images/projects/project-01/cover-03.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-        ],
+        images: [],
       },
       {
-        title: "Next.js",
+        title: "Libraries & frameworks",
         description: (
-          <>Building next gen apps with Next.js + Once UI + Supabase.</>
+          <>
+            ML and vision stacks for research pipelines; web stack for hackathon and deployed apps.
+          </>
         ),
         tags: [
-          {
-            name: "JavaScript",
-            icon: "javascript",
-          },
-          {
-            name: "Next.js",
-            icon: "nextjs",
-          },
-          {
-            name: "Supabase",
-            icon: "supabase",
-          },
+          { name: "PyTorch" },
+          { name: "NumPy" },
+          { name: "OpenCV" },
+          { name: "SciPy" },
+          { name: "Matplotlib" },
+          { name: "Flask" },
+          { name: "Pytesseract" },
+          { name: "Bootstrap 5" },
+          { name: "Render" },
         ],
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-04.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-        ],
+        images: [],
       },
     ],
   },
 };
 
-const blog: Blog = {
-  path: "/blog",
-  label: "Blog",
-  title: "Writing about design and tech...",
-  description: `Read what ${person.name} has been up to recently`,
-  // Create new blog posts by adding a new .mdx file to app/blog/posts
-  // All posts will be listed on the /blog route
-};
-
 const work: Work = {
-  path: "/work",
-  label: "Work",
-  title: `Projects – ${person.name}`,
-  description: `Design and dev projects by ${person.name}`,
-  // Create new project pages by adding a new .mdx file to app/blog/posts
-  // All projects will be listed on the /home and /work routes
+  path: "/portfolio",
+  label: "Portfolio",
+  title: "Coming soon",
+  description: `Project showcase for ${person.name} — coming soon`,
 };
 
-const gallery: Gallery = {
-  path: "/gallery",
-  label: "Gallery",
-  title: `Photo gallery – ${person.name}`,
-  description: `A photo collection by ${person.name}`,
-  // Images by https://lorant.one
-  // These are placeholder images, replace with your own
-  images: [
-    {
-      src: "/images/gallery/horizontal-1.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/vertical-4.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/horizontal-3.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/vertical-1.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/vertical-2.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/horizontal-2.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/horizontal-4.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/vertical-3.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-  ],
+const hobbies: Work = {
+  path: "/hobbies",
+  label: "Hobbies",
+  title: "Hobbies",
+  description: `Hobbies and interests — ${person.name}`,
 };
 
-export { person, social, newsletter, home, about, blog, work, gallery };
+export { person, social, home, about, work, hobbies };

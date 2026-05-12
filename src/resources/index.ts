@@ -2,17 +2,14 @@
 export {
   person,
   social,
-  newsletter,
   home,
   about,
-  blog,
   work,
-  gallery,
+  hobbies,
 } from "./content";
 
 export {
   display,
-  mailchimp,
   routes,
   protectedRoutes,
   baseURL,
