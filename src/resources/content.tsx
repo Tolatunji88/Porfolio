@@ -45,7 +45,7 @@ const social: Social = [
 
 const home: Home = {
   path: "/",
-  image: "/images/og/home.jpg",
+  image: "/images/avatar.png",
   label: "Home",
   title: `${person.name}'s Portfolio`,
   description: `${person.name} — computer engineering at U of T; interests in AI, ML, hardware, finance, and data`,
@@ -58,14 +58,30 @@ const home: Home = {
   subline: (
     <>
       I&apos;m a computer engineering student at the{" "}
-      <Text as="span" size="xl" weight="strong">
+      <Text as="span" weight="strong" onBackground="neutral-strong">
         University of Toronto
       </Text>
       . I&apos;m especially interested in{" "}
-      <Text as="span" weight="strong">
+      <Text as="span" weight="strong" onBackground="neutral-strong">
         AI and machine learning
       </Text>
-      , hardware, finance, data analytics, and the places those fields meet.
+      ,{" "}
+      <Text as="span" weight="strong" onBackground="neutral-strong">
+        hardware
+      </Text>
+      ,{" "}
+      <Text as="span" weight="strong" onBackground="neutral-strong">
+        finance
+      </Text>
+      ,{" "}
+      <Text as="span" weight="strong" onBackground="neutral-strong">
+        data analytics
+      </Text>
+      ,{" "}
+      <Text as="span" weight="strong" onBackground="neutral-strong">
+        music
+      </Text>
+      , and the places those fields meet.
     </>
   ),
 };
@@ -91,9 +107,32 @@ const about: About = {
     title: "Introduction",
     description: (
       <Column gap="m">
-        <Text variant="body-default-l">
-          I&apos;m a computer engineering student at the University of Toronto, especially interested in
-          AI and machine learning, hardware, finance, data analytics, and where those areas connect.
+        <Text variant="body-default-l" onBackground="neutral-weak" wrap="balance" align="left">
+          I&apos;m a computer engineering student at the{" "}
+          <Text as="span" weight="strong" onBackground="neutral-strong">
+            University of Toronto
+          </Text>
+          , especially interested in{" "}
+          <Text as="span" weight="strong" onBackground="neutral-strong">
+            AI and machine learning
+          </Text>
+          ,{" "}
+          <Text as="span" weight="strong" onBackground="neutral-strong">
+            hardware
+          </Text>
+          ,{" "}
+          <Text as="span" weight="strong" onBackground="neutral-strong">
+            finance
+          </Text>
+          ,{" "}
+          <Text as="span" weight="strong" onBackground="neutral-strong">
+            data analytics
+          </Text>
+          ,{" "}
+          <Text as="span" weight="strong" onBackground="neutral-strong">
+            music
+          </Text>
+          , and where those areas connect.
         </Text>
         <Row wrap gap="8">
           <Button
@@ -150,7 +189,7 @@ const about: About = {
     experiences: [
       {
         company: "University of Toronto",
-        timeframe: "May 2025 – Present",
+        timeframe: "January 2026 – Present",
         role: "Undergraduate Research Assistant — Generative AI for Thermal Systems",
         achievements: [
           <>
@@ -164,7 +203,7 @@ const about: About = {
             design optimization.
           </>,
           <>
-            Applied data augmentation on limited paired CFD datasets to train diffusion and GAN
+            Applying data augmentation on limited paired CFD datasets to train diffusion and GAN
             models for automated battery cooling layouts under geometric and manufacturing
             constraints.
           </>,

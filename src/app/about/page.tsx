@@ -152,13 +152,13 @@ export default function About() {
             <Heading className={styles.textAlign} variant="display-strong-xl">
               {person.name}
             </Heading>
-            <Text
-              className={styles.textAlign}
-              variant="display-default-xs"
-              onBackground="neutral-weak"
-            >
-              {person.role}
-            </Text>
+          <Text
+            className={styles.textAlign}
+            variant="body-default-m"
+            onBackground="neutral-weak"
+          >
+            {person.role}
+          </Text>
             {social.length > 0 && (
               <Row
                 className={styles.blockAlign}

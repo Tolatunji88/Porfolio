@@ -104,7 +104,7 @@ export default function Home() {
           <Text
             wrap="balance"
             onBackground="neutral-weak"
-            variant="heading-default-m"
+            variant="body-default-l"
             align="left"
           >
             {home.subline}

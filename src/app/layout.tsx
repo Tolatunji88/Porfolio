@@ -14,16 +14,24 @@ import {
   SpacingToken,
 } from "@once-ui-system/core";
 import { Footer, Header, RouteGuard, Providers } from "@/components";
-import { baseURL, effects, fonts, style, dataStyle, home } from "@/resources";
+import { baseURL, effects, fonts, style, dataStyle, home, person } from "@/resources";
 
 export async function generateMetadata() {
-  return Meta.generate({
+  const meta = Meta.generate({
     title: home.title,
     description: home.description,
     baseURL: baseURL,
     path: home.path,
     image: home.image,
   });
+  return {
+    ...meta,
+    icons: {
+      icon: [{ url: person.avatar, type: "image/png" }],
+      shortcut: [{ url: person.avatar }],
+      apple: [{ url: person.avatar, sizes: "180x180", type: "image/png" }],
+    },
+  };
 }
 
 export default async function RootLayout({
@@ -52,7 +60,7 @@ export default async function RootLayout({
               (function() {
                 try {
                   const root = document.documentElement;
-                  const defaultTheme = 'system';
+                  const defaultTheme = ${JSON.stringify(style.theme)};
                   
                   // Set defaults from config
                   const config = ${JSON.stringify({
@@ -83,7 +91,7 @@ export default async function RootLayout({
                   
                   // Apply saved theme
                   const savedTheme = localStorage.getItem('data-theme');
-                  const resolvedTheme = resolveTheme(savedTheme);
+                  const resolvedTheme = resolveTheme(savedTheme !== null ? savedTheme : defaultTheme);
                   root.setAttribute('data-theme', resolvedTheme);
                   
                   // Apply any saved style overrides
